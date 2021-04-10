@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Password generator
+{% endblock %}
+
+{% block body %}
+    <div id="content">
+        <nav>
+            <a href="#intro" class="nav-elem">Introduction</a>
+            <a href="#how-to" class="nav-elem">How to use</a>
+            <a href="#test-form" class="nav-elem">Test it</a>
+        </nav>
+        <main>
+            <section>
+                <h2 id="intro">Introduction</h2>
+                <p>	This web-site gives access to API for generating symbol sequences by given parameters.</p>
+                <h2 id="how-to">How to use</h2>
+                <p>
+                    <ol>
+                        <div>The step-by-step guide for using API:</div>
+                        <li>Create HTTP-request with GET method using this template: <i>http://website_name/generate?Parameter1&Parameter2</i></li>
+                        <li>Recieve JSON-response:
+                            <ul>
+                                <li>If request was successful the status-code of response would be 200 and response would contain only ‘string’ attribute with generated password.</li>
+                                <li>If you gave wrong parameters the status-code would be 400 and response would contain only <span class="red-text">‘error’</span> attribute with error clarification.</li>
+                            </ul>
+                        </li>
+                        <li>Extract generated password from JSON-response and use it where you need.</li>
+                    </ol>
+                </p>
+                <p>
+                    <ul>
+                        <div>Parameters:</div>
+                        <li><strong>count</strong> - defines the length of password, must be an integer number, <span class="red-text">this parameter is not optional</span>;</li>
+                        <li><strong>letters</strong> - adds upper-case and lower-case letters, must be 'on' or include custom letters;</li>
+                        <li><strong>upper-case</strong> - adds upper-case letters (A-Z), must be 'on';</li>
+                        <li><strong>lower-case</strong> - add lower-case letters (a-z), must be 'on';</li>
+                        <li><strong>digits</strong> - adds digits (0-9), must be 'on' or include custom digits;</li>
+                        <li><strong>special_symbols</strong> - adds special symbols (punctuation and others), must be 'on' or include punctuation symbols.</li>
+                    </ul>
+                </p>
+                <p>
+                    <ul>
+                        <div>Those are some examples of usage:</div>
+                        <li><i>/generate?count=12&letters=on&digits=on</i>
+                            <div class="password-instance">4LqjZnw03NUU</div></li>
+                        <li><i>/generate?count=14&letters=on&digits=12345&special_symbols=on</i>
+                            <div class="password-instance">21J1O*X{zTE1pD</div></li>
+                        <li><i>/generate?count=13&letters=on&digits=12345&special_symbols=!@$%</i>
+                            <div class="password-instance">3Y12BO@Jc5@22</div></li>
+                    </ul>
+                </p>
+                <form id="test-form" method="GET">
+                    <label for="url-parameters">
+                        Try it youself:
+                        <div><input type="text" id="url-parameters" name="url" value="/generate?"></div>
+                    </label><br>
+                    <button type="submit">Generate</button>
+                </form>
+                <output id="password">
+                    <div><small>Response</small></div>
+                    <div><iframe id="result"></iframe></div>
+                </output>
+            </section>
+        </main>
+    </div>
+    <script src="static/test.js"></script>
+{% endblock %}

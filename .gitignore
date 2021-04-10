@@ -1,0 +1,5 @@
+generator_venv/
+src/__pycache__/
+.idea/
+.vscode/
+Dockerfile

@@ -1,0 +1,74 @@
+body {
+    margin: 10px 20px 10px 20px;
+}
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    border-top: gray solid 1px;
+    border-bottom: gray solid 1px;
+}
+
+#name {
+    margin: 20px;
+}
+
+#logo {
+    margin: 20px;
+}
+
+#content {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px 20px 20px;
+    border-right: gray solid 1px;
+    font-size: 20px;
+}
+
+main {
+    margin: 0 30px 30px 30px;
+}
+
+#test-form {
+    margin: 40px 0 20px 0;
+}
+
+#url-parameters {
+    width: 50%;
+}
+
+footer {
+    border-top: gray solid 1px;
+}
+
+address {
+    padding: 20px;
+}
+
+address > a {
+    margin-right: 10px;
+}
+
+p, ol , ul {
+    font-size: 18px;
+}
+
+iframe {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.red-text {
+    color:red;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
