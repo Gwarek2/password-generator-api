@@ -7,26 +7,25 @@
           {% block title %}
           {% endblock %}
       </title>
+      <link rel="icon" href="{{url_for('static', filename='images/icon16.png')}}">
       <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}?123">
   </head>
   <body>
-    <header>
-        <img src="{{url_for('static', filename='assets/icon48.png')}}" width="50" height="50" id="logo">
+    <header id="title" class="row-container center-items">
+        <img src="{{url_for('static', filename='images/icon48.png')}}" width="50" height="50" id="logo">
         <h1 id="name">Secure password generator</h1>
     </header>
-    {% block body %}
+    {% block content %}
     {% endblock %}
-    <footer>
-      <address id="contacts">
-        <h4>Contacts:</h4>
+    <footer class="column-container center-items">
+        <h4>Author contacts:</h4>
         <div>
-            <a href="https://github.com/Gwarek2/"><img src="{{url_for('static', filename='assets/github-icon-dark.png')}}" alt="My GitHub profile"></a>
-            <a href="https://www.reddit.com/user/TheSamePerson1"><img src="{{url_for('static', filename='assets/reddit-icon.png')}}" alt="My Reddit profile"></a>
+            <a href="https://github.com/Gwarek2/" target="_blank"><img src="{{url_for('static', filename='images/github-icon-dark.png')}}" alt="My GitHub profile"></a>
+            <a href="https://www.reddit.com/user/TheSamePerson1" target="_blank"><img src="{{url_for('static', filename='images/reddit-icon.png')}}" alt="My Reddit profile"></a>
         </div>
         <div>
           Email: <strong>fedorsah@gmail.com</strong>
         </div>
-      </address>
     </footer>
   </body>
 </html>

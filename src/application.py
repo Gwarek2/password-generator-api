@@ -31,8 +31,10 @@ def generate():
     # Defining password length
     try:
         password_length = int(parameters.get('count'))
-    except (ValueError, TypeError):
+    except TypeError:
         return make_response(jsonify({'error': 'The count value must be an integer number'}), 400)
+    except ValueError:
+        return make_response(jsonify({'error': 'Must provide count value'}), 400)
 
     if password_length < 4 or password_length > 50:
         return make_response(jsonify({'error': 'The count value must be bigger than 4 and lower than 50'}), 400)
