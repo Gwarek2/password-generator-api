@@ -1,0 +1,7 @@
+Parameters:
+count - ( - defines the length of password, must be an integer number;
+letters = adds upper-case and lower-case letters, must be 'on';
+upper-case - adds upper-case letters (A-Z), must be 'on';
+lower-case - add lower-case letters (a-z), must be 'on';
+digits - adds digits (0-9), must be 'on' or include integer numbers;
+special_symbols - adds special symbols (!@#$%^&*?), must be 'on' or include punctuation symbols.
