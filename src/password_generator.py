@@ -15,17 +15,11 @@ class Password:
     special_symbols = ''
 
     def __init__(self, parameters):
-        try:
-            self.count = int(parameters.get('count'))
-        except TypeError:
-            raise Exception('The count must be an integer number')
-        except ValueError:
-            raise Exception('The count value were not given')
-
-        if self.count < 4 or self.count > 50:
-            raise Exception('The count value must be bigger than 4 and lower than 50')
-
         for parameter, value in parameters.items():
+            if parameter == 'count':
+                value = int(value)
+                if value < 4 or value > 50:
+                    raise ArithmeticError
             self.__setattr__(parameter, value)
 
     @property
