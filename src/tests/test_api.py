@@ -1,11 +1,11 @@
 import unittest
 import json
-import sys
 
-from src.helpers import *
 from src.application import app
+from src.password_generator import special_symbols
 
-class ApplicationTestCase(unittest.TestCase):
+
+class APITestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
@@ -55,7 +55,7 @@ class ApplicationTestCase(unittest.TestCase):
         parameter = 'abc'
         response = self.app.get(f'/generate?count=10&letters={parameter}')
         self.assertEqual(response.status_code, 200)
-    
+
         data = json.loads(response.data)
         password = data.get('string')
         self.assertTrue(password)
@@ -87,7 +87,8 @@ class ApplicationTestCase(unittest.TestCase):
 
         data = json.loads(response.data)
         password = data.get('string')
-        self.assertTrue(is_special_symbols(password))
+        for symbol in password:
+            self.assertIn(symbol, special_symbols)
 
     def test_custom_punctuation(self):
         parameter = '!@#$'
