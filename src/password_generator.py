@@ -7,6 +7,9 @@ from secrets import choice
 
 
 class Password:
+    """
+    Handles password generation
+    """
 
     letters = ''
     lower = ''
@@ -15,6 +18,8 @@ class Password:
     special_symbols = ''
 
     def __init__(self, parameters):
+        self.__pool = []
+        self.__value = ''
         for parameter, value in parameters.items():
             if parameter == 'count':
                 value = int(value)
@@ -23,22 +28,32 @@ class Password:
             self.__setattr__(parameter, value)
 
     @property
-    def pool(self):
+    def pool(self) -> list:
+        return self.__pool
+
+    @pool.setter
+    def pool(self, pool_chances: tuple) -> None:
+        """
+        Creates pool with given chances for each type of symbols.
+        Receives chances in tuple with 3 values:
+        (<letters_chances>, <digits_chances>, <special_symbol_chances>)
+        """
+        letters_chance, digits_chance, special_symbols_chance = pool_chances
         symbols_pool = []
         if self.letters == 'on':
-            symbols_pool += [letters]
+            symbols_pool += letters_chance * [letters]
         elif self.letters.isalpha():
-            symbols_pool += [self.letters]
+            symbols_pool += letters_chance * [self.letters]
         else:
             if self.upper == 'on':
-                symbols_pool += [upper]
+                symbols_pool += letters_chance * [upper]
             if self.lower == 'on':
-                symbols_pool += [lower]
+                symbols_pool += letters_chance * [lower]
 
         if self.digits == 'on':
-            symbols_pool += [digits]
+            symbols_pool += digits_chance * [digits]
         elif self.digits.isdigit():
-            symbols_pool += [self.digits]
+            symbols_pool += digits_chance * [self.digits]
 
         if self.special_symbols == 'on':
             symbols_pool += [special_symbols]
@@ -46,19 +61,23 @@ class Password:
             symbols_pool += [self.special_symbols]
 
         if not symbols_pool:
-            raise Exception('Permitted characters were not given')
+            raise IndexError
 
-        return symbols_pool
+        self.__pool = symbols_pool
+
+    @pool.deleter
+    def pool(self):
+        del self.__pool
 
     @property
-    def value(self):
+    def value(self) -> str:
         password = ''
         for i in range(int(self.count)):
             symbols = list(map(choice, self.pool))
             password += choice(symbols)
         return password
 
-    def __is_special_symbols(self):
+    def __is_special_symbols(self) -> bool:
         if not self.special_symbols:
             return False
         for symbol in self.special_symbols:
@@ -72,13 +91,13 @@ class Password:
 
 if __name__ == '__main__':
     parameters = {
-        'count': 14,
+        'count': '',
         'letters': 'on',
         'digits': 'on',
         'special_symbols': '!@$%^'
     }
 
     p = Password(parameters)
-    print(p.pool)
-    print(p.__dict__)
+    p.pool = (2, 2, 1)
+    print(p)
 
