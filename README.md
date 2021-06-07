@@ -4,9 +4,15 @@ A simple API for generating passwords.
 Homepage https://password-generator-api.herokuapp.com/
 
 ## How to setup
-pip install -r requirements.txt
+Install dependencies
 
-python wsgi.py
+`pip install -r requirements.txt`
+
+
+Run local server
+
+`python wsgi.py`
 
 ## How to test
-python -m unittest discover src/tests/
+Discover all tests
+`python -m unittest discover src/tests/`
